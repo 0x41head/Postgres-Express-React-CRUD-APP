@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  postgresql_server:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "" 
+      POSTGRES_DB: "perncrud"
+    ports:
+      - "5432:5432"
+  backend:
+    container_name: backend
+    build:
+      dockerfile: Dockerfile # same as of your docker file name
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgresql_server
+    restart: unless-stopped
+  frontend:
+    container_name: frontend
+    build:
+      dockerfile: Dockerfile # same as of your docker file name
+    ports:
+      - 3000:3000
+    restart: always
