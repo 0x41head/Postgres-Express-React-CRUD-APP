@@ -4,22 +4,23 @@ const pool = require("./db")
 const cors = require("cors");
 
 const connectToDB = async () => {
-    var retry =5
+    var retry =5;
     while(retry){
         try {
             await pool.connect();
             break;
         } catch (err) {
             if (retry>0){
+                console.log(retry+ " retries left");
                 retry=retry-1;
-                console.log(retry+ " retries left")
             }
             else{
-                console.log(err.message)
+                console.log(err.message);
             }
         }
     }
   };
+  
 connectToDB();
 
 //MIDDLEWARE
