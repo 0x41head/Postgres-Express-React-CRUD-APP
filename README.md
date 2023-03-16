@@ -2,7 +2,7 @@
 
 Docker command to build the image
 ```
-docker-compose up -d --build 
+docker-compose up -d  
 ```
 
 
